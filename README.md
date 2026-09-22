@@ -1,8 +1,7 @@
-# MVP — Engenharia de Dados: Valor de Mercado x Desempenho no Futebol Brasileiro (2024)
+# MVP — Engenharia de Dados: Valor de mercado pelo desempenho no futebol brasileiro. Existe relação?  (2024)
 
-**Autor:** [PREENCHER]
-**Repositório GitHub:** [PREENCHER]
-**Plataforma:** Databricks Free Edition (Unity Catalog, Arquitetura Medalhão)
+**Autor:** Rafael Akira Fukunaga
+**Plataforma:** Databricks
 
 ## Sumário
 - [Contexto de Negócios e Perguntas (Etapa 2 e 4.1)](#contexto-de-negócios-e-perguntas-etapa-2-e-41)
@@ -25,13 +24,13 @@ Investigar se o valor de mercado dos jogadores do futebol brasileiro reflete o d
 
 1. Existe correlação entre o valor de mercado atual do jogador e sua média de *rating* (Sofascore) na temporada 2024?
 2. Jogadores com maior valor de mercado têm maior participação em gols (gols + assistências) por 90 minutos jogados?
-3. Clubes com elenco mais valioso (soma do valor de mercado dos jogadores) têm melhor desempenho coletivo (posse de bola, xG, pontos por jogo) no Brasileirão 2024?
-4. A idade influencia o valor de mercado e o desempenho ao mesmo tempo — existe uma janela de idade onde o custo-benefício é maior?
+3. Clubes com elenco mais valioso têm melhor desempenho coletivo no Brasileirão 2024?
+4. A idade influencia o valor de mercado e o desempenho ao mesmo tempo que existe uma janela de idade onde o custo-benefício é maior?
 5. Jogadores mais valorizados jogam mais minutos, e isso se reflete em desempenho médio melhor?
 
 ### Contexto e estrutura dos dados brutos
 
-Os dados vêm de duas fontes, obtidas via *scraping* e entregues como 6 arquivos CSV.
+Os dados vêm de duas fontes, obtidas via *Kaggle* (Sofascore and Transfermarkt Football Data) e entregues como 6 arquivos CSV.
 
 **Fonte 1 — Transfermarkt** (histórico de carreira e valor de mercado, 2004–2024)
 
