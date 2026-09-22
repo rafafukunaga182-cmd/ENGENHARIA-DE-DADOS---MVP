@@ -1,8 +1,7 @@
 # MVP — Engenharia de Dados: Valor de Mercado x Desempenho no Futebol Brasileiro (2024)
 
-**Autor:** [PREENCHER]
-**Repositório GitHub:** [PREENCHER]
-**Plataforma:** Databricks Free Edition (Unity Catalog, Arquitetura Medalhão)
+**Autor:** Rafael Akira Fukunaga
+**Plataforma:** Databricks 
 
 ## Sumário
 - [Contexto de Negócios e Perguntas (Etapa 2 e 4.1)](#contexto-de-negócios-e-perguntas-etapa-2-e-41)
