@@ -4,13 +4,13 @@
 **Plataforma:** Databricks 
 
 ## Sumário
-- 1. [Contexto de Negócios e Perguntas](#contexto-de-negócios-e-perguntas-etapa-2-e-41)
-- 2. [Carga dos Dados](#carga-dos-dados-etapa-42)
-- 3. [Modelagem e Catálogo de Dados](#modelagem-e-catálogo-de-dados-etapa-43)
-- 4. [Pipeline de Dados ](#pipeline-de-dados-etapa-44)
-- 5. [Qualidade de Dados](#qualidade-de-dados-etapa-45)
-- 6. [Análise de Dados](#análise-de-dados-etapa-45)
-- 7. [Autoavaliação](#autoavaliação)
+-  [Contexto de Negócios e Perguntas](#contexto-de-negócios-e-perguntas-etapa-2-e-41)
+-  [Carga dos Dados](#carga-dos-dados-etapa-42)
+-  [Modelagem e Catálogo de Dados](#modelagem-e-catálogo-de-dados-etapa-43)
+-  [Pipeline de Dados ](#pipeline-de-dados-etapa-44)
+-  [Qualidade de Dados](#qualidade-de-dados-etapa-45)
+-  [Análise de Dados](#análise-de-dados-etapa-45)
+-  [Autoavaliação](#autoavaliação)
 
 ---
 
@@ -55,7 +55,7 @@ Cobre 880 partidas (02/04/2024 a 12/10/2024), 21 campeonatos (Brasileirão Séri
 ### Licença de uso
 
 O dataset foi obtido da plataforma Kaggle, sob a licença Database Contents License (DbCL) v1.0, indicada na página do dataset (https://www.kaggle.com/datasets/felipesembay/sofascore-and-transfermarkt-football-data)
----
+
 
 ## 2- Carga dos Dados
 
@@ -230,7 +230,8 @@ O pipeline foi ramificado em **3 notebooks sequenciais**, um por camada da Arqui
 ### Scripts e evidências
 
 - Notebooks: [01_bronze_ingestion](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/01_bronze_ingestion.sql), [02_silver_modelagem](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/02_silver_modelagem.sql), [03_gold_modelagem](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/03_gold_modelagem.sql)
-- Screenshots: <img width="371" height="571" alt="image" src="https://github.com/user-attachments/assets/346df4c2-6957-42be-b9ea-99a2240859b1" />
+- Screenshots:
+ <img width="371" height="571" alt="image" src="https://github.com/user-attachments/assets/346df4c2-6957-42be-b9ea-99a2240859b1" />
 
 
 ---
