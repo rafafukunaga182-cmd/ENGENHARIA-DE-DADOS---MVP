@@ -30,7 +30,7 @@ Investigar se o valor de mercado dos jogadores do futebol brasileiro reflete o d
 
 ### Contexto e estrutura dos dados brutos
 
-Os dados foram obtidos por meio de um dataset público do Kaggle — [PREENCHER: Sofascore and Transfermarkt Football 2024 (https://www.kaggle.com/datasets/felipesembay/sofascore-and-transfermarkt-football-data), que compila informações originalmente extraídas (via scraping) do Transfermarkt e do Sofascore. O dataset chegou como 6 arquivos CSV, descritos abaixo.
+Os dados foram obtidos por meio de um dataset público do Kaggle "Sofascore and Transfermarkt Football 2024" (https://www.kaggle.com/datasets/felipesembay/sofascore-and-transfermarkt-football-data), que compila informações originalmente extraídas (via scraping) do Transfermarkt e do Sofascore. O dataset chegou como 6 arquivos CSV, descritos abaixo.
 
 **Fonte 1 — Transfermarkt** (histórico de carreira e valor de mercado, 2004–2024)
 
