@@ -1,20 +1,20 @@
-# MVP — Engenharia de Dados: Valor de Mercado x Desempenho no Futebol Brasileiro (2024)
+# MVP — Engenharia de Dados: Valor de Mercado x Desempenho no Futebol Brasileiro (2024) - PUC-RIO
 
 **Autor:** Rafael Akira Fukunaga
 **Plataforma:** Databricks 
 
 ## Sumário
-- [Contexto de Negócios e Perguntas (Etapa 2 e 4.1)](#contexto-de-negócios-e-perguntas-etapa-2-e-41)
-- [Carga dos Dados (Etapa 4.2)](#carga-dos-dados-etapa-42)
-- [Modelagem e Catálogo de Dados (Etapa 4.3)](#modelagem-e-catálogo-de-dados-etapa-43)
-- [Pipeline de Dados (Etapa 4.4)](#pipeline-de-dados-etapa-44)
-- [Qualidade de Dados (Etapa 4.5)](#qualidade-de-dados-etapa-45)
-- [Análise de Dados (Etapa 4.5)](#análise-de-dados-etapa-45)
-- [Autoavaliação](#autoavaliação)
+- 1. [Contexto de Negócios e Perguntas](#contexto-de-negócios-e-perguntas-etapa-2-e-41)
+- 2. [Carga dos Dados](#carga-dos-dados-etapa-42)
+- 3. [Modelagem e Catálogo de Dados](#modelagem-e-catálogo-de-dados-etapa-43)
+- 4. [Pipeline de Dados ](#pipeline-de-dados-etapa-44)
+- 5. [Qualidade de Dados](#qualidade-de-dados-etapa-45)
+- 6. [Análise de Dados](#análise-de-dados-etapa-45)
+- 7. [Autoavaliação](#autoavaliação)
 
 ---
 
-## Contexto de Negócios e Perguntas (Etapa 2 e 4.1)
+## Contexto de Negócios e Perguntas
 
 ### Problema de negócio
 
@@ -30,7 +30,7 @@ Investigar se o valor de mercado dos jogadores do futebol brasileiro reflete o d
 
 ### Contexto e estrutura dos dados brutos
 
-Os dados vêm de duas fontes, obtidas via *scraping* e entregues como 6 arquivos CSV.
+Os dados foram obtidos por meio de um dataset público do Kaggle — [PREENCHER: Sofascore and Transfermarkt Football 2024 (https://www.kaggle.com/datasets/felipesembay/sofascore-and-transfermarkt-football-data), que compila informações originalmente extraídas (via scraping) do Transfermarkt e do Sofascore. O dataset chegou como 6 arquivos CSV, descritos abaixo.
 
 **Fonte 1 — Transfermarkt** (histórico de carreira e valor de mercado, 2004–2024)
 
@@ -54,17 +54,14 @@ Cobre 880 partidas (02/04/2024 a 12/10/2024), 21 campeonatos (Brasileirão Séri
 
 ### Licença de uso
 
-[PREENCHER] — Como os dados foram obtidos via *scraping* (não são um repositório de dados aberto oficial), verifique e cite aqui os Termos de Uso vigentes do Transfermarkt e do Sofascore antes de submeter o trabalho. Deixe explícito que o uso é estritamente acadêmico e não comercial.
-
-> Nota: por exigência do próprio enunciado do MVP (item 4 da Especificação de Entrega), **os dados brutos não precisam ser publicados no repositório GitHub** — apenas o código —, o que reduz o risco de conflito com os termos de uso das fontes.
-
+O dataset foi obtido da plataforma Kaggle, sob a licença Database Contents License (DbCL) v1.0, indicada na página do dataset (https://www.kaggle.com/datasets/felipesembay/sofascore-and-transfermarkt-football-data)
 ---
 
-## Carga dos Dados (Etapa 4.2)
+## 2- Carga dos Dados
 
 ### Como foi feita
 
-1. Os 6 arquivos CSV foram obtidos via *scraping* das fontes acima.
+1. Os 6 arquivos CSV foram obtidos pelo Kaggle (https://www.kaggle.com/datasets/felipesembay/sofascore-and-transfermarkt-football-data)
 2. Conta criada no **Databricks Free Edition**.
 3. Estrutura de catálogo criada seguindo a Arquitetura Medalhão:
 
@@ -81,15 +78,15 @@ CREATE VOLUME IF NOT EXISTS mvp_engenharia_de_dados.bronze.raw_files;
 
 ### Script de referência
 
-Notebook `01_bronze_ingestion` — [PREENCHER: link para o notebook no GitHub]
+Notebook `01_bronze_ingestion` — (https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/01_bronze_ingestion.sql)
 
 ---
 
-## Modelagem e Catálogo de Dados (Etapa 4.3)
+## 3- Modelagem e Catálogo de Dado
 
 ### Abordagem de modelagem
 
-Foi adotado um esquema de **constelação de fatos** (*fact constellation*): duas dimensões centrais (`dim_jogador`, `dim_time`) compartilhadas por quatro tabelas fato, cada uma respondendo a um subconjunto das 5 perguntas de negócio. Essa abordagem foi escolhida em vez de um Esquema Estrela único porque as perguntas operam em granularidades diferentes (avaliação de valor, temporada, partida-time, partida-jogador), que não cabem numa única tabela fato sem gerar redundância.
+Foi adotado um esquema de duas dimensões centrais (`dim_jogador`, `dim_time`) compartilhadas por quatro tabelas fato, cada uma respondendo a um subconjunto das 5 perguntas de negócio. Essa abordagem foi escolhida em vez de um Esquema Estrela único porque as perguntas operam em granularidades diferentes (avaliação de valor, temporada, partida-time, partida-jogador), que não cabem numa única tabela fato sem gerar redundância.
 
 O maior desafio da modelagem foi que as duas fontes **não compartilham uma chave comum**: o Transfermarkt identifica jogadores e clubes por ID/nome oficial, enquanto o Sofascore só traz nomes e apelidos como aparecem em campo. Esse problema foi resolvido na camada Silver através de duas tabelas de cruzamento (*de-para*), detalhadas na seção de Qualidade de Dados.
 
@@ -202,8 +199,10 @@ O maior desafio da modelagem foi que as duas fontes **não compartilham uma chav
 
 ### Screenshots
 
-[PREENCHER: screenshots do Catalog Explorer mostrando `mvp_engenharia_de_dados` com os 3 schemas (bronze/silver/gold) e as tabelas de cada um]
-
+<img width="891" height="440" alt="image" src="https://github.com/user-attachments/assets/6798eb45-b4c3-4bad-8a90-1c4c6190d937" />
+<img width="895" height="589" alt="image" src="https://github.com/user-attachments/assets/693228ba-52bb-416f-93ff-d11be8310e09" />
+<img width="891" height="734" alt="image" src="https://github.com/user-attachments/assets/574e51c4-7cdc-46ff-99a6-23449c1f4907" />
+<img width="747" height="643" alt="image" src="https://github.com/user-attachments/assets/1b147fe8-fe79-4c24-ab85-e39bc353d76a" />
 ---
 
 ## Pipeline de Dados (Etapa 4.4)
