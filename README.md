@@ -229,8 +229,9 @@ O pipeline foi ramificado em **3 notebooks sequenciais**, um por camada da Arqui
 
 ### Scripts e evidências
 
-- Notebooks: [01_bronze_ingestion](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/01_bronze_ingestion.sql), `02_silver_modelagem`, `03_gold_modelagem`
-- Screenshots: [PREENCHER: screenshot do Catalog Explorer mostrando as tabelas persistidas em cada schema (bronze/silver/gold) com contagem de linhas]
+- Notebooks: [01_bronze_ingestion](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/01_bronze_ingestion.sql), [02_silver_modelagem](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/02_silver_modelagem.sql), [03_gold_modelagem](https://github.com/rafafukunaga182-cmd/ENGENHARIA-DE-DADOS---MVP/blob/main/03_gold_modelagem.sql)
+- Screenshots: <img width="371" height="571" alt="image" src="https://github.com/user-attachments/assets/346df4c2-6957-42be-b9ea-99a2240859b1" />
+
 
 ---
 
