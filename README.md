@@ -205,7 +205,7 @@ O maior desafio da modelagem foi que as duas fontes **não compartilham uma chav
 <img width="747" height="643" alt="image" src="https://github.com/user-attachments/assets/1b147fe8-fe79-4c24-ab85-e39bc353d76a" />
 ---
 
-## Pipeline de Dados (Etapa 4.4)
+## Pipeline de Dados 
 
 ### Organização
 
@@ -266,17 +266,15 @@ O pipeline foi ramificado em **3 notebooks sequenciais**, um por camada da Arqui
 | Jogador — casamento após normalizar acentos | 2.026 / 3.027 (66,9%) |
 | Jogador — nomes ambíguos (múltiplos candidatos) | 137 nomes normalizados (12,2% do universo Transfermarkt) |
 | Jogador — teste de correspondência aproximada (*fuzzy matching*) sem uso do clube | Descartado: recuperava apenas +5,7%, com risco real de falso positivo (ex.: juntou "Ruan Santos" com "Luan Santos", jogadores diferentes) |
-| Jogador — resolução final (nome + clube) | [PREENCHER: rode `SELECT status_match, count(*) FROM silver.de_para_jogador_resolvido GROUP BY status_match` e preencha os números finais] |
+| Jogador — resolução final (nome + clube) | Match seguro: 1879; Não identificados: 1148 |
 | Time — casamento automático por sobreposição de palavras | 90 / 95 (94,7%) |
 | Time — sem correspondência na fonte | 5 / 95 (5,3%) — Fortaleza, CRB, Belgrano, Caracas F.C., Águia de Marabá |
 
-A decisão de documentar explicitamente os casos não identificados (em vez de descartá-los silenciosamente ou forçar um casamento incorreto) segue a orientação do próprio enunciado do trabalho: nem todas as perguntas precisam ser respondidas com 100% dos dados, desde que as limitações estejam claras.
-
 ---
 
-## Análise de Dados (Etapa 4.5)
+## Análise de Dados 
 
-### Pergunta 1 — Valor de mercado × rating médio
+### Pergunta 1 — Existe correlação entre o valor de mercado atual do jogador e sua média de rating (Sofascore) na temporada 2024?
 
 ```sql
 -- ver query completa no notebook 03_gold_modelagem
