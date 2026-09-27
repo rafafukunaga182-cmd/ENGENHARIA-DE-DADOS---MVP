@@ -276,21 +276,24 @@ O pipeline foi ramificado em **3 notebooks sequenciais**, um por camada da Arqui
 
 ### Pergunta 1 — Existe correlação entre o valor de mercado atual do jogador e sua média de rating (Sofascore) na temporada 2024?
 
-```sql
--- ver query completa no notebook 03_gold_modelagem
-```
+<img width="673" height="508" alt="image" src="https://github.com/user-attachments/assets/0e240b1f-6044-46dd-9c88-a84285bff7a1" />
 
-**Resultado:** correlação = **0,28** (fraca), amostra de 1.158 jogadores (mínimo 5 partidas com rating registrado).
+**Resultado:** foi encontrada uma correlação de 0,28, considerada fraca, utilizando uma amostra de 1.158 jogadores, com no mínimo 5 partidas com rating registrado.
 
-**Discussão:** a correlação é positiva e estatisticamente robusta dado o tamanho da amostra, mas fraca — r² ≈ 0,08, ou seja, o valor de mercado explica apenas ~8% da variação no rating médio em campo. Isso sugere que o mercado precifica o jogador considerando muito mais do que o desempenho estatístico de uma única temporada (potencial, idade, reputação, exposição em outras ligas).
+**Discussão:** Esse resultado mostra que existe uma relação positiva entre o valor de mercado e o rating médio, porém essa relação é baixa. O valor de mercado explica aproximadamente 8% da variação do rating (R² ≈ 0,08).
+Isso indica que o valor de mercado de um jogador não depende apenas do seu desempenho em campo durante uma temporada. Outros fatores, como idade, potencial de desenvolvimento, histórico, reputação e exposição em outras competições também podem influenciar o valor do jogador.
 
 ### Pergunta 2 — Valor de mercado × participação em gols por 90 min
 
-**Resultado:** correlação = **0,13** (muito fraca), amostra de 817 jogadores (mínimo 450 minutos jogados).
+<img width="717" height="529" alt="image" src="https://github.com/user-attachments/assets/c175dcf3-a994-46d2-ae44-29fa92018fdd" />
 
-**Discussão:** ainda mais fraca que a Pergunta 1. O mercado não parece pagar prioritariamente por artilharia — zagueiros, volantes e goleiros valiosos raramente participam diretamente de gols, mas seguem caros por outras qualidades (marcação, construção de jogo, liderança) não capturadas por essa métrica.
+**Resultado:** a correlação encontrada foi de 0,13, considerada muito fraca, utilizando uma amostra de 817 jogadores com pelo menos 450 minutos jogados.
+
+**Discussão:** A correlação foi ainda menor do que na primeira pergunta. Isso mostra que o valor de mercado não está diretamente relacionado à participação em gols. Um dos motivos é que a participação em gols é uma métrica que favorece principalmente atacantes e jogadores mais ofensivos. Jogadores de outras posições, como zagueiros, volantes e goleiros, podem possuir um valor de mercado elevado mesmo sem participarem diretamente dos gols, devido a outras características de desempenho que não são consideradas nessa métrica.
 
 ### Pergunta 3 — Valor do elenco × desempenho coletivo do time
+
+<img width="635" height="710" alt="image" src="https://github.com/user-attachments/assets/ccdc15d7-3eeb-48dc-b775-5249fb8fa40b" />
 
 **Resultado (83 clubes):**
 
@@ -300,9 +303,11 @@ O pipeline foi ramificado em **3 notebooks sequenciais**, um por camada da Arqui
 | Valor do elenco × xG médio | 0,36 (moderada) |
 | Valor do elenco × pontos por jogo | 0,47 (moderada) |
 
-**Discussão:** este é o achado mais forte do trabalho. Agregado por elenco, o valor de mercado se torna um preditor consideravelmente mais forte de desempenho do que no nível individual (Perguntas 1 e 2) — praticamente o dobro da força de correlação. Isso sugere que, embora o valor de um jogador isolado seja um preditor ruidoso do seu desempenho pessoal, o ruído se cancela no agregado e sobra um sinal real sobre a qualidade técnica geral do grupo.
+**Discussão:** Diferente das duas primeiras perguntas, os resultados apresentaram correlações moderadas. A maior correlação encontrada foi entre valor do elenco e pontos por jogo (0,47). Também foi encontrada uma relação de 0,41 com posse de bola e 0,36 com xG. Esse resultado mostra que, quando analisamos o valor de mercado no nível do elenco, a relação com o desempenho coletivo fica mais evidente. No nível individual, o valor de mercado apresentou correlações mais baixas, enquanto, quando os valores dos jogadores são agregados por clube, aparece uma relação maior com os indicadores de desempenho do time.
 
 ### Pergunta 4 — Idade × valor de mercado e desempenho
+
+<img width="628" height="737" alt="image" src="https://github.com/user-attachments/assets/307b838e-a6e7-4f11-9084-6ebae0efe146" />
 
 **Resultado:**
 
@@ -319,25 +324,29 @@ O pipeline foi ramificado em **3 notebooks sequenciais**, um por camada da Arqui
 | 39–41 | 8 | 204.375 | 6,82 |
 | 42+ | 2 | 225.000 | 6,91 |
 
-**Discussão:** a faixa de 15–17 anos (apenas 4 jogadores) é ruído estatístico e foi desconsiderada na interpretação. A partir dos 18 anos, o padrão é claro: o valor de mercado cai de forma quase monotônica com a idade, enquanto o rating médio permanece praticamente estável (entre 6,77 e 6,95) em todas as faixas. Isso responde diretamente à pergunta: existe uma janela de melhor custo-benefício, e ela é a faixa de **27 a 33 anos**, onde o rating está no pico da amostra mas o valor já caiu de forma expressiva em relação ao pico de 18–21 anos (que provavelmente reflete precificação de potencial futuro/revenda, não desempenho atual).
+**Discussão:** A faixa de 15 a 17 anos possui apenas 4 jogadores, então foi desconsiderada na interpretação por possuir uma amostra muito pequena. A partir dos 18 anos, é possível observar uma tendência de queda do valor de mercado conforme a idade aumenta. Por outro lado, o rating médio permanece relativamente estável, variando pouco entre as faixas analisadas. Um ponto interessante aparece entre 27 e 33 anos. Nessa faixa, os jogadores apresentam ratings médios próximos dos maiores valores encontrados, enquanto o valor de mercado já é consideravelmente menor do que nas faixas mais jovens. Isso indica uma possível relação entre idade, desempenho atual e valor de mercado. Jogadores mais jovens podem ter seu valor influenciado não apenas pelo desempenho atual, mas também pelo potencial de desenvolvimento e possibilidade de valorização futura.
 
 ### Pergunta 5 — Minutos jogados como elo entre valor e desempenho
 
-**Resultado:** correlação valor × minutos totais = **0,29** (fraca-moderada); correlação minutos × rating médio = **0,41** (moderada), amostra de 1.824 jogadores.
+<img width="613" height="471" alt="image" src="https://github.com/user-attachments/assets/4359e9d2-b75b-4ff9-a3b2-03080122d252" />
 
-**Discussão:** curiosamente, quantos minutos um jogador acumula prediz melhor o seu rating (0,41) do que o valor de mercado prediz sua minutagem (0,29). Isso sugere que a titularidade está mais ligada a ritmo de jogo e confiança do técnico do que diretamente ao preço do jogador.
+**Resultado:** a correlação entre valor de mercado e minutos jogados foi de 0,29, enquanto a correlação entre minutos jogados e rating médio foi de 0,41, utilizando uma amostra de 1.824 jogadores.
+
+**Discussão:** Os resultados mostram que os minutos jogados possuem uma relação maior com o rating médio do que o próprio valor de mercado possui com a quantidade de minutos. Isso indica que a quantidade de minutos acumulados pode estar mais relacionada ao desempenho observado e à participação do jogador nas partidas do que diretamente ao seu valor de mercado.
 
 ### Discussão geral
 
-O padrão que conecta as 5 perguntas: **no nível do jogador individual, valor de mercado é sistematicamente um preditor fraco de desempenho estatístico** (correlações entre 0,13 e 0,29). **Agregado por elenco, porém, ele se torna um preditor moderado de desempenho coletivo** (0,36 a 0,47). A leitura mais plausível é que o mercado precifica cada jogador por fatores que vão além do rendimento de uma única temporada — reforçado pelo achado da Pergunta 4, onde jogadores mais jovens (com rating equivalente aos mais velhos) custam sistematicamente mais, provavelmente por potencial de revenda — mas que, no agregado do elenco, esse "ruído" individual se cancela e sobra um sinal real sobre a força técnica geral do time.
+De forma geral, os resultados mostram que o valor de mercado apresenta uma relação fraca com o desempenho individual dos jogadores. Nas análises individuais, as correlações ficaram entre 0,13 e 0,29. Por outro lado, quando o valor de mercado é analisado de forma agregada por clube, a relação com o desempenho coletivo aumenta, chegando a 0,47 na comparação com pontos por jogo. Outro ponto observado foi a influência da idade. Jogadores mais jovens apresentam valores de mercado maiores mesmo quando os ratings médios não apresentam uma diferença tão grande em relação aos jogadores mais velhos. Isso reforça a possibilidade de que o mercado considere fatores além do desempenho atual, como potencial de desenvolvimento e valorização futura. Com isso, os resultados indicam que o valor de mercado sozinho não é suficiente para explicar o desempenho de um jogador individualmente, mas pode apresentar uma relação mais clara quando utilizado para representar a qualidade geral de um elenco.
 
----
 
 ## Autoavaliação
 
-[PREENCHER — escreva na sua própria voz. Alguns pontos que o enunciado pede que sejam discutidos:]
+Considero que os objetivos propostos para o MVP foram atingidos. As cinco perguntas de negócio definidas no início do projeto foram respondidas utilizando os dados do Transfermarkt e do Sofascore. Além da análise dos dados, também foi possível construir todo o fluxo de Engenharia de Dados no Databricks, desde a ingestão dos arquivos até a organização das tabelas nas camadas Bronze, Silver e Gold. Durante o desenvolvimento, também consegui aplicar conceitos de modelagem de dados, tratamento e qualidade dos dados, criação de pipelines e utilização de tabelas Delta. O projeto ajudou a entender melhor como essas etapas se conectam dentro de um projeto de Engenharia de Dados.
 
-- **Objetivos atingidos:** as 5 perguntas formuladas na Etapa 2 foram todas respondidas com dados reais; nenhuma precisou ser removida do escopo original.
-- **Dificuldades encontradas:** [PREENCHER — por exemplo, o maior desafio técnico do trabalho foi a ausência de uma chave comum entre as duas fontes de dados (Transfermarkt por ID, Sofascore por nome), que exigiu construir um processo de resolução de identidade em duas camadas (nome normalizado + desambiguação por clube) em vez de um simples JOIN.]
-- **Limitações conhecidas:** cerca de [PREENCHER: percentual final] dos jogadores do Sofascore não puderam ser vinculados ao Transfermarkt (nomes/apelidos que não batem, jogadores fora do elenco atual raspado, clubes estrangeiros não cobertos pela fonte); 5 clubes não foram encontrados na fonte Transfermarkt.
-- **Trabalhos futuros:** [PREENCHER — por exemplo: aplicar fuzzy matching supervisionado com revisão manual para recuperar parte dos ~33% de jogadores não identificados; expandir a análise para mais temporadas históricas; incorporar dados de posição tática (não só posição geral) para refinar a comparação de desempenho por função.]
+A principal dificuldade encontrada foi o cruzamento dos dados das duas fontes. O Transfermarkt possui um identificador próprio para os jogadores, enquanto o Sofascore não possui uma chave equivalente e utiliza os nomes dos jogadores. Além disso, os nomes poderiam aparecer com diferenças de acentuação, abreviações ou até apelidos. Para resolver esse problema, foi necessário criar um processo de normalização dos nomes e, nos casos em que existiam mais de um jogador com o mesmo nome, utilizar o clube como uma informação adicional para tentar identificar o jogador correto.
+
+Outra dificuldade foi trabalhar com os dados de partidas do Sofascore, principalmente porque algumas informações apareciam repetidas em diferentes níveis de granularidade. Foi necessário entender a estrutura dos dados antes de realizar as transformações para evitar duplicidades e resultados incorretos.
+
+Uma das principais limitações do projeto foi a quantidade de jogadores que não puderam ser relacionados entre as duas fontes. Após o processo de resolução, 1.879 jogadores foram identificados e 1.148 não puderam ser vinculados ao Transfermarkt. Isso significa que parte dos jogadores disponíveis no Sofascore não pôde ser utilizada nas análises que dependiam do valor de mercado. Além disso, cinco clubes presentes nos dados do Sofascore não foram encontrados na fonte do Transfermarkt. Outra limitação está relacionada ao período dos dados. As estatísticas do Sofascore utilizadas no projeto estão concentradas na temporada de 2024 e em um período específico de coleta. Dessa forma, os resultados representam esse recorte e não necessariamente podem ser generalizados para outras temporadas. Também foi necessário considerar a quantidade de valores nulos no rating do Sofascore. Como aproximadamente 31,3% dos registros possuem rating nulo, foi utilizado um filtro mínimo de partidas nas análises que dependiam dessa informação.
+
+Como próximos passos, seria interessante melhorar o processo de identificação dos jogadores, principalmente utilizando um processo de fuzzy matching supervisionado, com revisão dos casos mais ambíguos. Isso poderia aumentar a quantidade de jogadores relacionados entre as duas fontes sem aumentar muito o risco de realizar correspondências incorretas. Também seria interessante expandir o projeto para outras temporadas, permitindo analisar se as relações encontradas em 2024 continuam aparecendo ao longo do tempo. Outra possibilidade seria adicionar mais informações sobre a posição e função tática dos jogadores. Dessa forma, seria possível comparar jogadores de posições semelhantes e evitar que uma mesma métrica seja utilizada da mesma forma para jogadores com funções muito diferentes em campo. Por fim, o projeto poderia evoluir para um pipeline atualizado periodicamente, permitindo acompanhar as mudanças no valor de mercado e no desempenho dos jogadores ao longo das temporadas.
